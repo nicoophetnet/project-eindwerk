@@ -8,16 +8,8 @@ export default function BookingForm({ flight }) {
     const { data, setData, post, processing, errors } = useForm({
         flight_id: flight.id,
         user_id: auth.user.id,
-        passengers: [],
-    });
-
-    const [passengerCount, setPassengerCount] = useState(1);
-
-    const passengers = [];
-
-    for (let index = 0; index < passengerCount; index++) {
-        setData(
-            data.passengers.push({
+        passengers: [
+            {
                 booking_id: "",
                 // title: "",
                 firstname: "",
@@ -25,18 +17,15 @@ export default function BookingForm({ flight }) {
                 phonenumber: "",
                 email: "",
                 // luggage: "",
-            })
-        );
-        // data.passengers.push({
-        //     booking_id: "",
-        //     // title: "",
-        //     firstname: "",
-        //     lastname: "",
-        //     phonenumber: "",
-        //     email: "",
-        //     // luggage: "",
-        // });
+            },
+        ],
+    });
 
+    const [passengerCount, setPassengerCount] = useState(1);
+
+    const passengers = [];
+
+    for (let index = 0; index < passengerCount; index++) {
         passengers.push(
             <PassengerForm
                 index={index}
@@ -61,9 +50,9 @@ export default function BookingForm({ flight }) {
                 <button type="submit">Book your flight</button>
             </form>
             {
-                <button onClick={() => setPassengerCount(passengerCount + 1)}>
-                    Add passenger
-                </button>
+                // <button onClick={() => setPassengerCount(passengerCount + 1)}>
+                //     Add passenger
+                // </button>
             }
         </>
     );

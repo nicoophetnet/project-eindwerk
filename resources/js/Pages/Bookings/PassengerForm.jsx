@@ -5,7 +5,7 @@ export default function PassengerForm({ index, data, setData, errors }) {
     //     setData((data.passengers[index].firstname = firstname));
     // };
     // const passengers = data.passengers;
-    console.log(data);
+    // console.log(data);
     return (
         <>
             {/* <div>
