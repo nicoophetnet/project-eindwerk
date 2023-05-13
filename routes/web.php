@@ -24,11 +24,6 @@ Route::get('/', function () {
     return Inertia::render('Index');
 });
 
-Route::get('/your-bookings', function () {
-    return Inertia::render('YourBookings');
-});
-
-
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
@@ -40,4 +35,8 @@ Route::get('/flights', [FlightsController::class, 'index']);
 Route::get('/flights/{id}', [FlightsController::class, 'show']);
 Route::get('/flights/{id}/book', [BookingController::class, 'create'])->name('booking.create');
 Route::post('/flights/{id}/book', [BookingController::class, 'store']);
-Route::get('/bookings/{booking_id}', [BookingController::class, 'show'])->name('bookings.show');
+
+Route::get('/users/{user_id}/bookings/{booking_id}', [BookingController::class, 'show'])
+    ->name('bookings.show')
+    ->middleware('auth');
+Route::get('/your-bookings', [BookingController::class, 'index'])->name('bookings.index')->middleware(['auth']);

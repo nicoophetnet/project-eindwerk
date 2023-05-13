@@ -10,10 +10,10 @@ const ShowBooking = ({ booking }) => {
 
             <h2>Flight Information</h2>
             <p>Flight ID: {flight.id}</p>
-            <p>Departure Airport: {flight.departure_airport}</p>
-            <p>Arrival Airport: {flight.arrival_airport}</p>
-            <p>Departure Time: {flight.departure_time}</p>
-            <p>Arrival Time: {flight.arrival_time}</p>
+            <p>Departure Airport: {flight.departure_location}</p>
+            <p>Arrival Airport: {flight.arrival_location}</p>
+            <p>Departure Time: {flight.depature_hour}</p>
+            <p>Arrival Time: {flight.arrival_hour}</p>
 
             <h2>Passenger Information</h2>
             {passengers.map((passenger, index) => (

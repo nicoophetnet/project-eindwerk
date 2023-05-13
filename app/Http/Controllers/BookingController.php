@@ -7,12 +7,20 @@ use App\Models\Flight;
 use App\Models\Booking;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Booking');
+        $bookings = Booking::where('user_id', Auth::id())
+            ->with('flight', 'passengers')
+            ->orderByDesc('created_at')
+            ->get();
+
+        return Inertia::render('Bookings/IndexBooking', [
+            'bookings' => $bookings,
+        ]);
     }
 
     public function store(Request $request)
@@ -68,7 +76,7 @@ class BookingController extends Controller
         }
 
         // Redirect the user to their bookings page
-        return redirect()->route('bookings.show', ['booking_id' => $booking_id])->withErrors($validatedData);
+        return redirect()->route('bookings.show', ['user_id' => auth()->user()->id, 'booking_id' => $booking_id])->withErrors($validatedData);
     }
 
 
@@ -84,7 +92,9 @@ class BookingController extends Controller
 
     public function show($booking_id)
     {
-        $booking = Booking::findOrFail($booking_id);
+        $booking = Booking::where('user_id', Auth::id())
+            ->with('flight', 'passengers')
+            ->findOrFail($booking_id);
 
         $flight = $booking->flight;
 

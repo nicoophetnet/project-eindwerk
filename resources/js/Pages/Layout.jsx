@@ -7,10 +7,11 @@ export default function Layout({ children }) {
         <div className="main-layout">
             <nav className="main-nav">
                 <Link href="/">Logo</Link>
-                <Link href="/your-bookings">Your bookings</Link>
-
                 {auth.logged_in ? (
-                    <Link href="/logout">Logout</Link>
+                    <>
+                        <Link href="/your-bookings">Your bookings</Link>
+                        <Link href="/logout">Logout</Link>
+                    </>
                 ) : (
                     <>
                         <Link href="/register">Register</Link>
