@@ -67,10 +67,8 @@ class BookingController extends Controller
             $passenger->save();
         }
 
-
-
         // Redirect the user to their bookings page
-        return redirect('/your-bookings')->withErrors($validatedData);
+        return redirect()->route('bookings.show', ['booking_id' => $booking_id])->withErrors($validatedData);
     }
 
 
@@ -84,7 +82,18 @@ class BookingController extends Controller
     }
 
 
-    public function show()
+    public function show($booking_id)
     {
+        $booking = Booking::findOrFail($booking_id);
+
+        $flight = $booking->flight;
+
+        $passengers = $booking->passengers;
+
+        return Inertia::render('Bookings/ShowBooking', [
+            'booking' => $booking,
+            'flight' => $flight,
+            'passengers' => $passengers,
+        ]);
     }
 }

@@ -40,4 +40,4 @@ Route::get('/flights', [FlightsController::class, 'index']);
 Route::get('/flights/{id}', [FlightsController::class, 'show']);
 Route::get('/flights/{id}/book', [BookingController::class, 'create'])->name('booking.create');
 Route::post('/flights/{id}/book', [BookingController::class, 'store']);
-Route::get('/your-bookings', [BookingController::class, 'show']);
+Route::get('/bookings/{booking_id}', [BookingController::class, 'show'])->name('bookings.show');

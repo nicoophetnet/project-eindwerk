@@ -11,6 +11,11 @@ class Booking extends Model
     protected $table = 'bookings';
     protected $fillable = ['flight_id', 'user_id', 'price'];
 
+    public function flight()
+    {
+        return $this->belongsTo(Flight::class);
+    }
+
     public function passengers()
     {
         return $this->hasMany(Passenger::class);
