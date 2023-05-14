@@ -8,7 +8,7 @@ export default function Index() {
                 Book your flights for the 2024 European Senior Championships
             </h1>
             <br />
-            <div className="flex spcbtwn">
+            <div className="flights">
                 <IngoingFlights />
                 <OutgoingFlights />
             </div>

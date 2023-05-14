@@ -34,7 +34,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth');
 Route::get('/flights', [FlightsController::class, 'index']);
 Route::get('/flights/{id}', [FlightsController::class, 'show']);
 Route::get('/flights/{id}/book', [BookingController::class, 'create'])->name('booking.create')->middleware('auth');
-Route::post('/flights/{id}/book', [BookingController::class, 'store']);
+Route::post('/flights/{id}/book', [BookingController::class, 'store'])->middleware('auth');
 
 Route::get('/users/{user_id}/bookings/{booking_id}', [BookingController::class, 'show'])
     ->name('bookings.show')

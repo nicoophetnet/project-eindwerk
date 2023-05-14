@@ -5,14 +5,14 @@ const IndexBooking = ({ bookings }) => {
     return (
         <div>
             <h1>Your Bookings</h1>
-            <div className="flex spcbtwn">
+            <div className="bookings-index">
                 <div>
                     <h2>Incoming flights</h2>
                     {bookings.map((booking) => {
                         if (booking.flight.arrival_location == "Eindhoven")
                             return (
                                 <div key={booking.id}>
-                                    <div className="bookings flex spcbtwn bttm">
+                                    <div className="bookings">
                                         <div>
                                             <h3>Flight Information</h3>
                                             Booking:{" "}
@@ -64,7 +64,7 @@ const IndexBooking = ({ bookings }) => {
                         if (booking.flight.departure_location == "Eindhoven")
                             return (
                                 <div key={booking.id}>
-                                    <div className="bookings flex spcbtwn bttm">
+                                    <div className="bookings">
                                         <div>
                                             <h3>Flight Information</h3>
                                             Booking:{" "}
