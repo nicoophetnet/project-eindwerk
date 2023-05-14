@@ -133,7 +133,7 @@ input {
 /* booking */
 
 .booking {
-    width: 600px;
+    width: 400px;
     margin: 0 auto 1rem;
     background-color: white;
     border-radius: 4px;
@@ -294,6 +294,10 @@ p {
 @media (min-width: 768px) {
     .container {
         width: 700px;
+    }
+
+    .booking {
+        width: 600px;
     }
 
     .bookings {
