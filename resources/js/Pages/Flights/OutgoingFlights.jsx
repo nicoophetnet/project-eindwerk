@@ -12,7 +12,7 @@ function OutgoingFlights() {
 
     return (
         <div>
-            <h1>Outgoing flights</h1>
+            <h2>Outgoing flights</h2>
             <table>
                 <thead>
                     <tr>

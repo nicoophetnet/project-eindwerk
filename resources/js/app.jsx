@@ -2,6 +2,7 @@ import "./bootstrap";
 import { createInertiaApp } from "@inertiajs/react";
 import { createRoot } from "react-dom/client";
 import Layout from "./Pages/Layout";
+import "./../css/App.css";
 
 createInertiaApp({
     resolve: (name) => {

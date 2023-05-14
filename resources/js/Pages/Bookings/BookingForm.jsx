@@ -43,17 +43,19 @@ export default function BookingForm({ flight }) {
         post(`/flights/${flight.id}/book`);
     };
     return (
-        <>
+        <div>
             <form onSubmit={submit}>
                 {passengers}
 
-                <button type="submit">Book your flight</button>
+                <button type="submit" className="btn-book">
+                    Book your flight
+                </button>
             </form>
             {
                 // <button onClick={() => setPassengerCount(passengerCount + 1)}>
                 //     Add passenger
                 // </button>
             }
-        </>
+        </div>
     );
 }

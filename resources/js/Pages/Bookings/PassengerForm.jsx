@@ -5,7 +5,7 @@ export default function PassengerForm({ index, data, setData, errors }) {
     //     setData((data.passengers[index].firstname = firstname));
     // };
     // const passengers = data.passengers;
-    // console.log(data);
+    // console.log(errors);
     return (
         <>
             {/* <div>
@@ -25,38 +25,37 @@ export default function PassengerForm({ index, data, setData, errors }) {
                 {errors.title && <div>{errors.title}</div>}
             </div> */}
 
-            <div>
-                First name:
+            <div className="flex column">
+                <label htmlFor="firstname">First name</label>
                 <input
                     type="text"
+                    id="firstname"
                     onChange={(e) =>
                         setData(
                             (data.passengers[index].firstname = e.target.value)
                         )
                     }
                 />
-                {errors && <div>{errors[Object.keys(errors)[0]]}</div>}
             </div>
 
-            <div>
-                Last name:
+            <div className="flex column">
+                <label htmlFor="lastname">Last name</label>
                 <input
                     type="text"
+                    id="lastname"
                     onChange={(e) =>
                         setData(
                             (data.passengers[index].lastname = e.target.value)
                         )
                     }
                 />
-                {errors[Object.keys(errors)[1]] && (
-                    <div>{errors[Object.keys(errors)[1]]}</div>
-                )}
             </div>
 
-            <div>
-                Phone number:
+            <div className="flex column">
+                <label htmlFor="phonenumber">Phone number</label>
                 <input
                     type="tel"
+                    id="phonenumber"
                     onChange={(e) =>
                         setData(
                             (data.passengers[index].phonenumber =
@@ -64,22 +63,17 @@ export default function PassengerForm({ index, data, setData, errors }) {
                         )
                     }
                 />
-                {errors[Object.keys(errors)[2]] && (
-                    <div>{errors[Object.keys(errors)[2]]}</div>
-                )}
             </div>
 
-            <div>
-                Email:
+            <div className="flex column">
+                <label htmlFor="email">Email address</label>
                 <input
                     type="email"
+                    id="email"
                     onChange={(e) =>
                         setData((data.passengers[index].email = e.target.value))
                     }
                 />
-                {errors[Object.keys(errors)[3]] && (
-                    <div>{errors[Object.keys(errors)[3]]}</div>
-                )}
             </div>
 
             {/* <div>
@@ -93,6 +87,29 @@ export default function PassengerForm({ index, data, setData, errors }) {
                     }
                 />
             </div> */}
+
+            <div>
+                {errors[Object.keys(errors)[0]] && (
+                    <div className="error">
+                        {errors[Object.keys(errors)[0]]}
+                    </div>
+                )}
+                {errors[Object.keys(errors)[1]] && (
+                    <div className="error">
+                        {errors[Object.keys(errors)[1]]}
+                    </div>
+                )}
+                {errors[Object.keys(errors)[2]] && (
+                    <div className="error">
+                        {errors[Object.keys(errors)[2]]}
+                    </div>
+                )}
+                {errors[Object.keys(errors)[3]] && (
+                    <div className="error">
+                        {errors[Object.keys(errors)[3]]}
+                    </div>
+                )}
+            </div>
         </>
     );
 }

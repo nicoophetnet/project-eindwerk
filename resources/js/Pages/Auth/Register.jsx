@@ -20,57 +20,72 @@ export default function Register() {
         data.password_confirmation.length > 7;
 
     return (
-        <>
+        <div className="auth">
             <h1>Register</h1>
 
             <form onSubmit={submit}>
-                <div>
-                    Name:{" "}
+                <div className="flex column">
+                    <label htmlFor="name">Name</label>
                     <input
                         type="text"
+                        id="name"
                         value={data.name}
                         onChange={(e) => setData("name", e.target.value)}
                     />
-                    {errors.name && <div>{errors.name}</div>}
+                    {errors.name && <div className="error">{errors.name}</div>}
                 </div>
-                <div>
-                    Email:{" "}
+                <div className="flex column">
+                    <label htmlFor="email">Email address</label>
                     <input
                         type="email"
+                        id="email"
                         value={data.email}
                         onChange={(e) => setData("email", e.target.value)}
                     />
-                    {errors.email && <div>{errors.email}</div>}
+                    {errors.email && (
+                        <div className="error">{errors.email}</div>
+                    )}
                 </div>
-                <div>
-                    Password:{" "}
+                <div className="flex column">
+                    <label htmlFor="password">Password</label>
                     <input
                         type="password"
+                        id="password"
                         value={data.password}
                         onChange={(e) => setData("password", e.target.value)}
                     />
-                    {errors.password && <div>{errors.password}</div>}
+                    {errors.password && (
+                        <div className="error">{errors.password}</div>
+                    )}
                 </div>
                 {data.password.length > 7 && (
-                    <div>
-                        Password confirmation:{" "}
+                    <div className="flex column">
+                        <label htmlFor="confirm">Password confirmation</label>
                         <input
                             type="password"
+                            id="confirm"
                             value={data.password_confirmation}
                             onChange={(e) =>
                                 setData("password_confirmation", e.target.value)
                             }
                         />
                         {errors.password_confirmation && (
-                            <div>{errors.password_confirmation}</div>
+                            <div className="error">
+                                {errors.password_confirmation}
+                            </div>
                         )}
                     </div>
                 )}
 
                 <div>
-                    <input disabled={!isValid} type="submit" value="Register" />
+                    <input
+                        disabled={!isValid}
+                        type="submit"
+                        value="Register"
+                        className="btn-auth"
+                    />
                 </div>
             </form>
-        </>
+        </div>
     );
 }

@@ -106,4 +106,12 @@ class BookingController extends Controller
             'passengers' => $passengers,
         ]);
     }
+
+    public function destroy($booking_id)
+    {
+        $booking = Booking::where('user_id', Auth::id())->findOrFail($booking_id);
+        $booking->delete();
+
+        return redirect()->route('bookings.index');
+    }
 }

@@ -9,11 +9,11 @@ export default function Flight({ flight }) {
             <td>{flight.arrival_location}</td>
             <td>{flight.airline}</td>
             <td>{flight.date}</td>
-            {auth.logged_in == true && (
-                <td>
-                    <Link href={`/flights/${flight.id}/book`}>Book now</Link>
-                </td>
-            )}
+            <td>
+                <Link href={`/flights/${flight.id}/book`}>
+                    <button className="btn-book">Book now</button>
+                </Link>
+            </td>
         </tr>
     );
 }
