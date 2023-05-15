@@ -7,6 +7,7 @@ use App\Models\Flight;
 use App\Models\Booking;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
@@ -18,9 +19,7 @@ class BookingController extends Controller
             ->orderByDesc('created_at')
             ->get();
 
-        return Inertia::render('Bookings/IndexBooking', [
-            'bookings' => $bookings,
-        ]);
+        return response()->json($bookings);
     }
 
     public function store(Request $request)
@@ -30,7 +29,6 @@ class BookingController extends Controller
         // Validate the request data
         $validatedData = $request->validate([
             'flight_id' => 'required',
-            'user_id' => 'required',
             'passengers' => 'required|array|min:1',
             'passengers.*.firstname' => 'required|string|min:2|max:255|regex:/^[a-zA-Z\s]+$/i',
             'passengers.*.lastname' => 'required|string|min:2|max:255',
@@ -51,7 +49,7 @@ class BookingController extends Controller
         // Create a new Booking instance and save it to the database
         $booking = new Booking();
         $booking->flight_id = $validatedData['flight_id'];
-        $booking->user_id = $validatedData['user_id'];
+        $booking->user_id = Auth::id();
         $booking->save();
 
 
@@ -59,6 +57,8 @@ class BookingController extends Controller
         $booking_id = $booking->id;
 
         $passengers = $validatedData['passengers'];
+
+        // dd($passengers);
 
         // Create a new Passenger instance for each passenger in the request data and associate it with the booking
         foreach ($passengers as $passengerData) {
@@ -76,7 +76,8 @@ class BookingController extends Controller
         }
 
         // Redirect the user to their bookings page
-        return redirect()->route('bookings.show', ['user_id' => auth()->user()->id, 'booking_id' => $booking_id])->withErrors($validatedData);
+        // return redirect()->route('bookings.show', ['user_id' => auth()->user()->id, 'booking_id' => $booking_id]);
+        return redirect('/');
     }
 
 
@@ -90,7 +91,7 @@ class BookingController extends Controller
     }
 
 
-    public function show($booking_id)
+    public function show($user_id, $booking_id)
     {
         $booking = Booking::where('user_id', Auth::id())
             ->with('flight', 'passengers')
@@ -100,6 +101,7 @@ class BookingController extends Controller
 
         $passengers = $booking->passengers;
 
+
         return Inertia::render('Bookings/ShowBooking', [
             'booking' => $booking,
             'flight' => $flight,
@@ -107,11 +109,12 @@ class BookingController extends Controller
         ]);
     }
 
-    public function destroy($booking_id)
+    public function destroy($user_id, $booking_id)
     {
+
         $booking = Booking::where('user_id', Auth::id())->findOrFail($booking_id);
         $booking->delete();
 
-        return redirect()->route('bookings.index');
+        return Inertia::render('/');
     }
 }

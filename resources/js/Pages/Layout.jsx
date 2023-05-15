@@ -8,7 +8,7 @@ export default function Layout({ children }) {
         <div className="main-layout">
             <header className="main-header">
                 <div className="container">
-                    <div className="flex spcbtwn">
+                    <div className="header">
                         <Link href="/">
                             <img src={logo} alt="" />
                         </Link>
@@ -16,11 +16,6 @@ export default function Layout({ children }) {
                             <nav className="main-nav">
                                 {auth.logged_in ? (
                                     <>
-                                        <Link href="/your-bookings">
-                                            <button className="button">
-                                                Your bookings
-                                            </button>
-                                        </Link>
                                         <Link href="/logout">
                                             <button className="button">
                                                 Logout

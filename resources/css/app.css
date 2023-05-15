@@ -87,8 +87,15 @@ a:hover {
     padding: 1rem 0;
 }
 
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .main-nav {
-    text-align: right;
+    text-align: center;
+    margin-top: 1rem;
 }
 
 .main-content {
@@ -142,7 +149,7 @@ input {
 }
 
 .booking input {
-    margin-right: 10rem;
+    margin-right: 6rem;
 }
 
 .booking-info {
@@ -154,7 +161,7 @@ p {
 }
 
 .show > div {
-    margin: 1.5rem 0 3rem;
+    /* margin: 1.5rem 0 3rem; */
 }
 
 .bookings {
@@ -164,6 +171,15 @@ p {
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
     padding: 3rem;
+}
+
+.pform {
+    width: 350px;
+}
+
+.overview {
+    display: flex;
+    flex-direction: column;
 }
 
 /* buttons */
@@ -296,8 +312,25 @@ p {
         width: 700px;
     }
 
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .main-nav {
+        text-align: right;
+        margin: 0;
+    }
+
+    .overview {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
     .booking {
-        width: 600px;
+        width: 500px;
     }
 
     .bookings {

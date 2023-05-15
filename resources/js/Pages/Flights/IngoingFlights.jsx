@@ -11,26 +11,30 @@ function IngoingFlights() {
     }, []);
 
     return (
-        <div>
-            <h2>Ingoing flights</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Departure</th>
-                        <th>Arrival</th>
-                        <th>Airline</th>
-                        <th>Date</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {flights.map((flight) => {
-                        if (flight.arrival_location == "Eindhoven")
-                            return <Flight key={flight.id} flight={flight} />;
-                    })}
-                </tbody>
-            </table>
-        </div>
+        <>
+            <div>
+                <h2>Ingoing flights</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Departure</th>
+                            <th>Arrival</th>
+                            <th>Airline</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {flights.map((flight) => {
+                            if (flight.arrival_location == "Eindhoven")
+                                return (
+                                    <Flight key={flight.id} flight={flight} />
+                                );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </>
     );
 }
 

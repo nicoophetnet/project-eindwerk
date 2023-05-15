@@ -1,7 +1,22 @@
 import React from "react";
-import { InertiaLink } from "@inertiajs/inertia-react";
+import { usePage } from "@inertiajs/react";
+import { InertiaLink, useForm } from "@inertiajs/inertia-react";
 
 const IndexBooking = ({ bookings }) => {
+    const { auth } = usePage().props;
+    const { delete: destroy } = useForm();
+
+    const submit = (e, booking_id) => {
+        e.preventDefault();
+        const user_id = auth.user.id;
+        console.log(user_id);
+        destroy(
+            `/users/${user_id}/bookings/${booking_id}`,
+            user_id,
+            booking_id
+        );
+    };
+
     return (
         <div>
             <h1>Your Bookings</h1>
@@ -48,9 +63,19 @@ const IndexBooking = ({ bookings }) => {
                                             </p>
                                         </div>
                                         <div>
-                                            <button className="btn-book">
-                                                Cancel this flight
-                                            </button>
+                                            <form
+                                                onSubmit={(e) =>
+                                                    submit(e, booking.id)
+                                                }
+                                            >
+                                                {" "}
+                                                <button
+                                                    type="submit"
+                                                    className="btn-book"
+                                                >
+                                                    Cancel this flight
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

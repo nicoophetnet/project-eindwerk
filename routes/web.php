@@ -36,9 +36,9 @@ Route::get('/flights/{id}', [FlightsController::class, 'show']);
 Route::get('/flights/{id}/book', [BookingController::class, 'create'])->name('booking.create')->middleware('auth');
 Route::post('/flights/{id}/book', [BookingController::class, 'store'])->middleware('auth');
 
+Route::get('/users/{user_id}/bookings', [BookingController::class, 'index'])->middleware(['auth']);
 Route::get('/users/{user_id}/bookings/{booking_id}', [BookingController::class, 'show'])
     ->name('bookings.show')
     ->middleware('auth');
-Route::get('/your-bookings', [BookingController::class, 'index'])->name('bookings.index')->middleware(['auth']);
 
-Route::delete('/users/{user_id}/bookings/{id}', 'BookingController@destroy')->name('bookings.destroy')->middleware('auth');
+Route::delete('/users/{user_id}/bookings/{booking_id}', [BookingController::class, 'destroy'])->middleware('auth');

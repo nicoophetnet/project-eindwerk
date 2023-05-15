@@ -1,61 +1,77 @@
 import { useState } from "react";
-import { useForm, usePage } from "@inertiajs/react";
+import { router } from "@inertiajs/react";
 import PassengerForm from "./PassengerForm";
 
 export default function BookingForm({ flight }) {
-    const { auth } = usePage().props;
-
-    const { data, setData, post, processing, errors } = useForm({
+    const [passengerCount, setPassengerCount] = useState(1);
+    const [formData, setFormData] = useState({
         flight_id: flight.id,
-        user_id: auth.user.id,
         passengers: [
             {
-                booking_id: "",
-                // title: "",
                 firstname: "",
                 lastname: "",
                 phonenumber: "",
                 email: "",
-                // luggage: "",
             },
         ],
     });
+    const [errors, setErrors] = useState([]);
 
-    const [passengerCount, setPassengerCount] = useState(1);
-
-    const passengers = [];
-
-    for (let index = 0; index < passengerCount; index++) {
-        passengers.push(
-            <PassengerForm
-                index={index}
-                key={index}
-                data={data}
-                setData={setData}
-                errors={errors}
-            />
-        );
-    }
-
-    const submit = (e) => {
-        e.preventDefault();
-        // console.log(data);
-        post(`/flights/${flight.id}/book`);
+    const handleInputChange = (e, index) => {
+        const { name, value } = e.target;
+        const passengers = [...formData.passengers];
+        passengers[index] = { ...passengers[index], [name]: value };
+        setFormData({ ...formData, passengers });
     };
-    return (
-        <div>
-            <form onSubmit={submit}>
-                {passengers}
 
-                <button type="submit" className="btn-book">
-                    Book your flight
+    const handleAddPassenger = () => {
+        setPassengerCount(passengerCount + 1);
+        setFormData({
+            ...formData,
+            passengers: [
+                ...formData.passengers,
+                {
+                    firstname: "",
+                    lastname: "",
+                    phonenumber: "",
+                    email: "",
+                },
+            ],
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData);
+        router.post(`/flights/${flight.id}/book`, formData);
+    };
+
+    const passengers = formData.passengers.map((passenger, index) => (
+        <PassengerForm
+            key={index}
+            index={index}
+            passenger={passenger}
+            handleInputChange={handleInputChange}
+            errors={errors}
+        />
+    ));
+
+    return (
+        <div className="flex spcbtwn bttm">
+            <div className="pform">
+                <form onSubmit={handleSubmit}>
+                    {passengers}
+
+                    <button type="submit" className="btn-book">
+                        Book your flight
+                    </button>
+                </form>
+            </div>
+            <div>
+                <button className="btn-book" onClick={handleAddPassenger}>
+                    Add passenger
                 </button>
-            </form>
-            {
-                // <button onClick={() => setPassengerCount(passengerCount + 1)}>
-                //     Add passenger
-                // </button>
-            }
+            </div>
         </div>
     );
 }

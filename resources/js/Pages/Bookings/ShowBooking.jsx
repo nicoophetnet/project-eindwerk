@@ -1,8 +1,23 @@
 import React from "react";
 import { InertiaLink } from "@inertiajs/inertia-react";
+import { usePage, useForm, router } from "@inertiajs/react";
 
 const ShowBooking = ({ booking }) => {
     const { flight, passengers } = booking;
+    const { auth } = usePage().props;
+    const { delete: destroy } = useForm();
+
+    const submit = (e, booking_id) => {
+        e.preventDefault();
+        const user_id = auth.user.id;
+        // console.log(user_id);
+        router.delete(
+            `/users/${user_id}/bookings/${booking_id}`,
+            user_id,
+            booking_id
+        );
+        location.reload();
+    };
 
     return (
         <div className="booking show">
@@ -31,12 +46,12 @@ const ShowBooking = ({ booking }) => {
             </div>
 
             <div>
-                <InertiaLink href="/">
-                    <button className="btn-book">Back to Home</button>
-                </InertiaLink>{" "}
-                <InertiaLink href="/your-bookings">
-                    <button className="btn-book">Your bookings</button>
-                </InertiaLink>
+                <form onSubmit={(e) => submit(e, booking.id)}>
+                    {" "}
+                    <button type="submit" className="btn-book">
+                        Cancel this flight
+                    </button>
+                </form>
             </div>
         </div>
     );
