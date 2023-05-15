@@ -193,7 +193,7 @@ p {
     color: var(--color-blue);
     cursor: pointer;
     font-family: "Roboto", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     outline: none;
     outline: 0;
@@ -228,7 +228,7 @@ p {
     color: var(--color-yellow);
     cursor: pointer;
     font-family: "Roboto", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     outline: none;
     outline: 0;
@@ -261,7 +261,7 @@ p {
     color: var(--color-yellow);
     cursor: pointer;
     font-family: "Roboto", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     outline: none;
     outline: 0;
@@ -300,7 +300,7 @@ p {
     color: white;
     cursor: default;
     font-family: "Roboto", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     outline: none;
     outline: 0;
@@ -369,6 +369,22 @@ p {
         display: flex;
         justify-content: space-between;
         align-items: end;
+    }
+
+    .button {
+        font-size: 16px;
+    }
+
+    .btn-book {
+        font-size: 16px;
+    }
+
+    .btn-auth {
+        font-size: 16px;
+    }
+
+    .btn-booked {
+        font-size: 16px;
     }
 }
 
