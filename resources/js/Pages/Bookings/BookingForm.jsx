@@ -15,15 +15,17 @@ export default function BookingForm({ flight }) {
             },
         ],
     });
-    const [errors, setErrors] = useState([]);
-
     const [seats, setSeats] = useState(flight.seats - 1);
+    const [formErrors, setFormErrors] = useState([]);
 
     const handleInputChange = (e, index) => {
         const { name, value } = e.target;
         const passengers = [...formData.passengers];
         passengers[index] = { ...passengers[index], [name]: value };
         setFormData({ ...formData, passengers });
+
+        const newFormErrors = validateForm();
+        setFormErrors(newFormErrors);
     };
 
     const handleAddPassenger = () => {
@@ -45,7 +47,38 @@ export default function BookingForm({ flight }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        router.post(`/flights/${flight.id}/book`, formData);
+        const newFormErrors = validateForm();
+        if (newFormErrors.length === 0) {
+            router.post(`/flights/${flight.id}/book`, formData);
+        } else {
+            setFormErrors(newFormErrors);
+        }
+    };
+
+    const validateForm = () => {
+        const newFormErrors = [];
+        formData.passengers.forEach((passenger) => {
+            if (!passenger.firstname) {
+                newFormErrors.push("First name is required.");
+            }
+
+            if (!passenger.lastname) {
+                newFormErrors.push("Last name is required.");
+            }
+
+            if (!passenger.phonenumber) {
+                newFormErrors.push("Phone number is required.");
+            } else if (!/^\d{10}$/.test(passenger.phonenumber)) {
+                newFormErrors.push("Phone number must be a 10-digit number.");
+            }
+
+            if (!passenger.email) {
+                newFormErrors.push("Email address is required.");
+            } else if (!/\S+@\S+\.\S+/.test(passenger.email)) {
+                newFormErrors.push("Invalid email address.");
+            }
+        });
+        return newFormErrors;
     };
 
     const passengers = formData.passengers.map((passenger, index) => (
@@ -54,7 +87,7 @@ export default function BookingForm({ flight }) {
             index={index}
             passenger={passenger}
             handleInputChange={handleInputChange}
-            errors={errors}
+            errors={formErrors[index] || []}
         />
     ));
 
@@ -63,6 +96,15 @@ export default function BookingForm({ flight }) {
             <div className="pform">
                 <form onSubmit={handleSubmit}>
                     {passengers}
+
+                    <div>
+                        {formErrors.length > 0 &&
+                            formErrors.map((error, index) => (
+                                <div key={index} className="error">
+                                    {error}
+                                </div>
+                            ))}
+                    </div>
 
                     <button type="submit" className="btn-book">
                         Book your flight

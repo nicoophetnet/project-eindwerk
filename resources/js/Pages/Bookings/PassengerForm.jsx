@@ -1,9 +1,12 @@
+import React from "react";
+
 export default function PassengerForm({
     index,
     passenger,
     handleInputChange,
     errors,
 }) {
+    console.log(errors);
     return (
         <>
             <h3>Passenger {index + 1}</h3>
@@ -16,6 +19,9 @@ export default function PassengerForm({
                     value={passenger.firstname}
                     onChange={(e) => handleInputChange(e, index)}
                 />
+                {errors.firstname && (
+                    <div className="error">{errors.firstname}</div>
+                )}
             </div>
 
             <div className="flex column">
@@ -27,6 +33,9 @@ export default function PassengerForm({
                     value={passenger.lastname}
                     onChange={(e) => handleInputChange(e, index)}
                 />
+                {errors.lastname && (
+                    <div className="error">{errors.lastname}</div>
+                )}
             </div>
 
             <div className="flex column">
@@ -38,6 +47,9 @@ export default function PassengerForm({
                     value={passenger.phonenumber}
                     onChange={(e) => handleInputChange(e, index)}
                 />
+                {errors.phonenumber && (
+                    <div className="error">{errors.phonenumber}</div>
+                )}
             </div>
 
             <div className="flex column">
@@ -49,10 +61,7 @@ export default function PassengerForm({
                     value={passenger.email}
                     onChange={(e) => handleInputChange(e, index)}
                 />
-            </div>
-
-            <div>
-                {errors.length > 0 && <div className="error">{errors[0]}</div>}
+                {errors.email && <div className="error">{errors.email}</div>}
             </div>
         </>
     );

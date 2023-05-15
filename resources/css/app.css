@@ -77,7 +77,7 @@ a:hover {
 }
 
 .container {
-    width: 500px;
+    width: 414px;
     margin: 0 auto;
 }
 
@@ -120,7 +120,7 @@ td:last-child {
 /* auth */
 
 .auth {
-    width: 400px;
+    width: 380px;
     margin: auto;
     background-color: white;
     border-radius: 4px;
@@ -145,8 +145,8 @@ input {
 /* booking */
 
 .booking {
-    width: 400px;
-    margin: 0 auto 1rem;
+    width: 380px;
+    margin: 1rem auto 1rem;
     background-color: white;
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
@@ -154,7 +154,8 @@ input {
 }
 
 .booking input {
-    margin-right: 6rem;
+    width: 200px;
+    margin-right: 1rem;
 }
 
 .booking-info {

@@ -1,114 +1,58 @@
-export default function PassengerForm({ index, data, setData, errors }) {
-    // const setFirstName = (firstname) => {
-    //     console.log(firstname);
-    //     console.log(data.passengers);
-    //     setData((data.passengers[index].firstname = firstname));
-    // };
-    // const passengers = data.passengers;
-    // console.log(errors);
+export default function PassengerForm({
+    index,
+    passenger,
+    handleInputChange,
+    errors,
+}) {
     return (
         <>
-            {/* <div>
-                Title:
-                <select
-                    name="title"
-                    id="title"
-                    value={data.passengers[index].title}
-                    onChange={(e) =>
-                        setData((data.passengers[index].title = e.target.value))
-                    }
-                >
-                    <option value="Mr.">Mr.</option>
-                    <option value="Mrs.">Mrs.</option>
-                    <option value="Ms.">Ms.</option>
-                </select>
-                {errors.title && <div>{errors.title}</div>}
-            </div> */}
             <h3>Passenger {index + 1}</h3>
             <div className="flex column">
-                <label htmlFor="firstname">First name</label>
+                <label htmlFor={`firstname-${index}`}>First name</label>
                 <input
                     type="text"
-                    id="firstname"
+                    id={`firstname-${index}`}
                     name="firstname"
-                    value={data.passengers[index].firstname}
-                    onChange={(e) =>
-                        setData(`passengers.${index}.firstname`, e.target.value)
-                    }
+                    value={passenger.firstname}
+                    onChange={(e) => handleInputChange(e, index)}
                 />
             </div>
 
             <div className="flex column">
-                <label htmlFor="lastname">Last name</label>
+                <label htmlFor={`lastname-${index}`}>Last name</label>
                 <input
                     type="text"
-                    id="lastname"
-                    onChange={(e) =>
-                        setData(
-                            (data.passengers[index].lastname = e.target.value)
-                        )
-                    }
+                    id={`lastname-${index}`}
+                    name="lastname"
+                    value={passenger.lastname}
+                    onChange={(e) => handleInputChange(e, index)}
                 />
             </div>
 
             <div className="flex column">
-                <label htmlFor="phonenumber">Phone number</label>
+                <label htmlFor={`phonenumber-${index}`}>Phone number</label>
                 <input
                     type="tel"
-                    id="phonenumber"
-                    onChange={(e) =>
-                        setData(
-                            (data.passengers[index].phonenumber =
-                                e.target.value)
-                        )
-                    }
+                    id={`phonenumber-${index}`}
+                    name="phonenumber"
+                    value={passenger.phonenumber}
+                    onChange={(e) => handleInputChange(e, index)}
                 />
             </div>
 
             <div className="flex column">
-                <label htmlFor="email">Email address</label>
+                <label htmlFor={`email-${index}`}>Email address</label>
                 <input
                     type="email"
-                    id="email"
-                    onChange={(e) =>
-                        setData((data.passengers[index].email = e.target.value))
-                    }
+                    id={`email-${index}`}
+                    name="email"
+                    value={passenger.email}
+                    onChange={(e) => handleInputChange(e, index)}
                 />
             </div>
 
-            {/* <div>
-                Luggage:
-                <input
-                    type="checkbox"
-                    onChange={(e) =>
-                        setData(
-                            (data.passengers[index].luggage = e.target.value)
-                        )
-                    }
-                />
-            </div> */}
-
             <div>
-                {errors[Object.keys(errors)[0]] && (
-                    <div className="error">
-                        {errors[Object.keys(errors)[0]]}
-                    </div>
-                )}
-                {errors[Object.keys(errors)[1]] && (
-                    <div className="error">
-                        {errors[Object.keys(errors)[1]]}
-                    </div>
-                )}
-                {errors[Object.keys(errors)[2]] && (
-                    <div className="error">
-                        {errors[Object.keys(errors)[2]]}
-                    </div>
-                )}
-                {errors[Object.keys(errors)[3]] && (
-                    <div className="error">
-                        {errors[Object.keys(errors)[3]]}
-                    </div>
-                )}
+                {errors.length > 0 && <div className="error">{errors[0]}</div>}
             </div>
         </>
     );
