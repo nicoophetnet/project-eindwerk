@@ -49,7 +49,7 @@ const ShowBooking = ({ booking }) => {
                 <form onSubmit={(e) => submit(e, booking.id)}>
                     {" "}
                     <button type="submit" className="btn-book">
-                        Cancel this flight
+                        Cancel this booking
                     </button>
                 </form>
             </div>

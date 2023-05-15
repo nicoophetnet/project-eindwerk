@@ -54,6 +54,9 @@ export default function Register() {
                         value={data.password}
                         onChange={(e) => setData("password", e.target.value)}
                     />
+                    {data.password.length > 7 ? null : (
+                        <p>Password should contain at least 8 characters.</p>
+                    )}
                     {errors.password && (
                         <div className="error">{errors.password}</div>
                     )}

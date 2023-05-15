@@ -16,7 +16,11 @@ export default function Flight({ flight }) {
                         <button className="btn-book">Book now</button>
                     </Link>
                 ) : (
-                    "Fully booked"
+                    <div>
+                        <button className="btn-booked">
+                            No seats available
+                        </button>
+                    </div>
                 )}
             </td>
         </tr>

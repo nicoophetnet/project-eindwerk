@@ -108,8 +108,9 @@ thead {
 
 td,
 th {
-    padding: 1rem 1rem 1rem 0;
+    padding: 0.5rem 0.5rem 0.5rem 0;
     vertical-align: center;
+    font-size: 14px;
 }
 
 /* auth */
@@ -191,8 +192,7 @@ p {
     box-sizing: border-box;
     color: var(--color-blue);
     cursor: pointer;
-    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont,
-        sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 16px;
     font-weight: 400;
     outline: none;
@@ -227,8 +227,7 @@ p {
     box-sizing: border-box;
     color: var(--color-yellow);
     cursor: pointer;
-    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont,
-        sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 16px;
     font-weight: 400;
     outline: none;
@@ -261,8 +260,7 @@ p {
     box-sizing: border-box;
     color: var(--color-yellow);
     cursor: pointer;
-    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont,
-        sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 16px;
     font-weight: 400;
     outline: none;
@@ -290,7 +288,30 @@ p {
 
 .btn-auth:disabled:hover {
     transform: none;
-    box-shadow: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+}
+
+.btn-booked {
+    background-color: grey;
+    border: 1px solid grey;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+    box-sizing: border-box;
+    color: white;
+    cursor: default;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    padding: 0.5rem 0.3rem;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 104px;
 }
 
 @media (min-width: 768px) {
@@ -312,6 +333,12 @@ p {
         width: 700px;
     }
 
+    td,
+    th {
+        padding: 1rem 1rem 1rem 0;
+        font-size: 16px;
+    }
+
     .header {
         display: flex;
         flex-direction: row;
@@ -327,6 +354,10 @@ p {
         display: flex;
         justify-content: space-between;
         flex-direction: row;
+    }
+
+    .auth {
+        width: 430px;
     }
 
     .booking {
@@ -349,7 +380,7 @@ p {
 
 @media (min-width: 1200px) {
     .container {
-        width: 1100px;
+        width: 1150px;
     }
 
     .flights,

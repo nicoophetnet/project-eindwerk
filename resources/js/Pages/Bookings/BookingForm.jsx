@@ -75,7 +75,7 @@ export default function BookingForm({ flight }) {
                         Add passenger
                     </button>
                 ) : (
-                    <p>No seats available anymore</p>
+                    <button className="btn-booked">No seats available</button>
                 )}
             </div>
         </div>
