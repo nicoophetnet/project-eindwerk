@@ -9,10 +9,15 @@ export default function Flight({ flight }) {
             <td>{flight.arrival_location}</td>
             <td>{flight.airline}</td>
             <td>{flight.date}</td>
+            <td>{flight.seats}</td>
             <td>
-                <Link href={`/flights/${flight.id}/book`}>
-                    <button className="btn-book">Book now</button>
-                </Link>
+                {flight.seats > 0 ? (
+                    <Link href={`/flights/${flight.id}/book`}>
+                        <button className="btn-book">Book now</button>
+                    </Link>
+                ) : (
+                    "Fully booked"
+                )}
             </td>
         </tr>
     );

@@ -75,6 +75,12 @@ class BookingController extends Controller
             $passenger->save();
         }
 
+        $flight = Flight::findOrFail($booking->flight_id);
+
+        $flight->seats = $flight->seats - count($passengers);
+
+        $flight->save();
+
         // Redirect the user to their bookings page
         // return redirect()->route('bookings.show', ['user_id' => auth()->user()->id, 'booking_id' => $booking_id]);
         return redirect('/');
@@ -111,8 +117,14 @@ class BookingController extends Controller
 
     public function destroy($user_id, $booking_id)
     {
-
         $booking = Booking::where('user_id', Auth::id())->findOrFail($booking_id);
+
+        $flight = Flight::findOrFail($booking->flight_id);
+
+        $flight->seats = $flight->seats + count($booking->passengers);
+
+        $flight->save();
+
         $booking->delete();
 
         return Inertia::render('/');

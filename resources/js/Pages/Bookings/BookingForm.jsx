@@ -17,6 +17,8 @@ export default function BookingForm({ flight }) {
     });
     const [errors, setErrors] = useState([]);
 
+    const [seats, setSeats] = useState(flight.seats - 1);
+
     const handleInputChange = (e, index) => {
         const { name, value } = e.target;
         const passengers = [...formData.passengers];
@@ -25,6 +27,7 @@ export default function BookingForm({ flight }) {
     };
 
     const handleAddPassenger = () => {
+        setSeats(seats - 1);
         setPassengerCount(passengerCount + 1);
         setFormData({
             ...formData,
@@ -42,7 +45,6 @@ export default function BookingForm({ flight }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
         router.post(`/flights/${flight.id}/book`, formData);
     };
 
@@ -68,9 +70,13 @@ export default function BookingForm({ flight }) {
                 </form>
             </div>
             <div>
-                <button className="btn-book" onClick={handleAddPassenger}>
-                    Add passenger
-                </button>
+                {seats > 0 ? (
+                    <button className="btn-book" onClick={handleAddPassenger}>
+                        Add passenger
+                    </button>
+                ) : (
+                    <p>No seats available anymore</p>
+                )}
             </div>
         </div>
     );

@@ -21,6 +21,7 @@ function IngoingFlights() {
                             <th>Arrival</th>
                             <th>Airline</th>
                             <th>Date</th>
+                            <th>Seats</th>
                             <th></th>
                         </tr>
                     </thead>
