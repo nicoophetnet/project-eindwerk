@@ -113,6 +113,10 @@ th {
     font-size: 14px;
 }
 
+td:last-child {
+    padding-right: 0;
+}
+
 /* auth */
 
 .auth {
