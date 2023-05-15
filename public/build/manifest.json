@@ -1,0 +1,21 @@
+{
+  "resources/img/logo.png": {
+    "file": "assets/logo-c91c82eb.png",
+    "src": "resources/img/logo.png"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-ec692e95.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.jsx": {
+    "assets": [
+      "assets/logo-c91c82eb.png"
+    ],
+    "css": [
+      "assets/app-ec692e95.css"
+    ],
+    "file": "assets/app-6a7c3f65.js",
+    "isEntry": true,
+    "src": "resources/js/app.jsx"
+  }
+}
