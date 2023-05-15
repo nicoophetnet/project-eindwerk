@@ -4,7 +4,7 @@
     "src": "resources/img/logo.png"
   },
   "resources/js/app.css": {
-    "file": "assets/app-184a7429.css",
+    "file": "assets/app-c67a817f.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.jsx": {
@@ -12,9 +12,9 @@
       "assets/logo-c91c82eb.png"
     ],
     "css": [
-      "assets/app-184a7429.css"
+      "assets/app-c67a817f.css"
     ],
-    "file": "assets/app-6fcda7a1.js",
+    "file": "assets/app-09379653.js",
     "isEntry": true,
     "src": "resources/js/app.jsx"
   }
