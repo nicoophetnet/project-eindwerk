@@ -68,14 +68,10 @@ export default function BookingForm({ flight }) {
 
             if (!passenger.phonenumber) {
                 newFormErrors.push("Phone number is required.");
-            } else if (!/^\d{10}$/.test(passenger.phonenumber)) {
-                newFormErrors.push("Phone number must be a 10-digit number.");
             }
 
             if (!passenger.email) {
                 newFormErrors.push("Email address is required.");
-            } else if (!/\S+@\S+\.\S+/.test(passenger.email)) {
-                newFormErrors.push("Invalid email address.");
             }
         });
         return newFormErrors;
