@@ -69,10 +69,6 @@ export default function BookingForm({ flight }) {
             if (!passenger.phonenumber) {
                 newFormErrors.push("Phone number is required.");
             }
-
-            if (!passenger.email) {
-                newFormErrors.push("Email address is required.");
-            }
         });
         return newFormErrors;
     };
